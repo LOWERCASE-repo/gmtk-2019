@@ -10,6 +10,10 @@ public abstract class Entity : MonoBehaviour {
   [Header("Components")]
   [SerializeField]
   protected Rigidbody2D rb;
+  
+  [Header("GameObjects")]
+  [SerializeField]
+  private MainCamera cam;
 
   protected void Move(Vector2 pos) {
     rb.AddForce((pos - rb.position).normalized * acc);
@@ -18,8 +22,7 @@ public abstract class Entity : MonoBehaviour {
   protected void Rotate(Vector2 dir) {
     if (dir.Equals(Vector2.zero)) return;
     float ang = Vector2.SignedAngle(Vector2.up, dir);
-    float pol = 1f - Mathf.Abs(ang) / 360f;
-    rb.MoveRotation(Mathf.LerpAngle(rb.rotation, ang, pol));
+    rb.rotation = ang;
   }
 
   protected virtual void Start() {
