@@ -3,34 +3,34 @@ using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
   
-  private enum State { Plain, Golden, Hot, Spiky };
+  private enum State {  Hot, Golden, Spiky };
   private Dictionary<State, float> switches;
   private State state;
-  
-  [SerializeField]
-  private float minBounce;
+  private float switchChance;
   
   [Header("Components")]
   [SerializeField]
   private Animator animator;
   
-  [Header("Prefabs")]
-  [SerializeField]
-  private PhysicsMaterial2D mat;
-  
   [Header("GameObjects")]
   [SerializeField]
   private Player player;
   
-  private void OnCollisionEnter2D(Collision2D collision) {
-    Vector2 vel = collision.rigidbody.velocity;
-    if (vel.magnitude < minBounce) {
-      collision.rigidbody.velocity = vel.normalized * minBounce;
-    }
-    if (vel == Vector2.zero) {
-      collision.rigidbody.velocity = (Vector2)transform.up * minBounce;
-    }
+  private void SwitchState() {
+    if (Random.value > switchChance) return;
     
-    // if ()
+  }
+  
+  private void Start() {
+    switchCount = 0;
+    switchChance = 0.3f;
+  }
+  
+  private int switchCount;
+  private void Update() {
+    if (player.score > (switchCount + 1) * 20) {
+      SwitchState();
+      switchCount++;
+    }
   }
 }

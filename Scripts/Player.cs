@@ -36,11 +36,11 @@ public class Player : Entity {
   
   private IEnumerator ChargeThrow() {
     while (Input.GetButton("Throw")) {
-      heldTime += Time.deltaTime;
       if (heldTime > chargeTime) {
         animator.SetBool("FullyCharged", true);
       }
       yield return null;
+      heldTime += Time.deltaTime;
     }
     ball.transform.position = transform.position;
     ball.transform.rotation = transform.rotation;

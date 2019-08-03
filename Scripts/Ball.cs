@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Ball : Entity {
   
@@ -17,7 +18,6 @@ public class Ball : Entity {
   
   [SerializeField]
   private float catchWindow;
-  private float thrownTime;
   
   [SerializeField]
   private Player player;
@@ -26,33 +26,60 @@ public class Ball : Entity {
   private int smashCount;
   private bool golden;
   private bool flaming;
+  public bool catchable;
+  
+  private float airTime;
+  private IEnumerator Activate() {
+    while (gameObject.activeSelf) {
+      if (airTime > catchWindow) {
+        catchable = false;
+      }
+      yield return null;
+      airTime += Time.deltaTime;
+    }
+  }
+  // fixed time pause for crunch
+  
+  private void ResetScore() {
+    ricoCount = 0;
+    smashCount = 0;
+    golden = false;
+    flaming = false;
+  }
   
   private int GetScore() {
     int score = (int)Mathf.Round(Mathf.Pow(ricoCount, 1.5f)) * 5;
     score += ricoCount * smashCount * 10;
     if (golden) score *= 2;
     
-    ricoCount = 0;
-    smashCount = 0;
-    golden = false;
-    flaming = false;
-    
     return score;
   }
   
+  private void OnEnable() {
+    airTime = 0f;
+    catchable = true;
+    StartCoroutine(Activate());
+  }
+  
   private void FixedUpdate() {
+    if (catchable) {
+      Move(rb.position + rb.velocity);
+    }
     rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed * 1.5f);
   }
   
   private void OnTriggerEnter2D() {
-    if (!flaming) {
-      player.score += GetScore();
-    } else {
+    if (flaming) {
       Debug.Log("player burnt");
     }
+    if (catchable) {
+      player.score += GetScore();
+    }
+    ResetScore();
   }
   
   private void OnCollisionEnter2D() {
     ricoCount += 1;
   }
+  
 }

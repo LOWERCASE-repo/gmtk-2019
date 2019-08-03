@@ -52,7 +52,7 @@ public class Room : MonoBehaviour {
   }
   
   private void Update() {
-    if (player.score > (active.Count + 1) * 10) {
+    if (player.score > (active.Count + 1) * 100) {
       AddState();
     }
   }
