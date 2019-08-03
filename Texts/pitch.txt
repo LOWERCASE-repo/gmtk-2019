@@ -1,0 +1,10 @@
+
+
+
+
+
+only one:
+- room
+- bullet
+- life
+

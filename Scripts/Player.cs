@@ -20,6 +20,10 @@ public class Player : Entity {
   private float heldTime;
   public int score;
   
+  [Header("Components")]
+  [SerializeField]
+  private Animator animator;
+  
   [Header("GameObjects")]
   [SerializeField]
   private Ball ball;
@@ -30,23 +34,27 @@ public class Player : Entity {
     StartCoroutine(GrowScore());
   }
   
-  private bool charging; // TODO animator time
   private IEnumerator ChargeThrow() {
     while (Input.GetButton("Throw")) {
       heldTime += Time.deltaTime;
+      if (heldTime > chargeTime) {
+        animator.SetBool("FullyCharged", true);
+      }
       yield return null;
     }
     ball.transform.position = transform.position;
     ball.transform.rotation = transform.rotation;
     float chargeMod;
-    if (heldTime > chargeTime) {
-      // animator.SetTrigger("Flash");
+    if (animator.GetBool("FullyCharged")) {
       chargeMod = maxCharge + chargeBonus;
     } else {
       chargeMod = maxCharge * heldTime / chargeTime;
     }
+    ball.gameObject.SetActive(true);
     ball.rb.velocity = rb.velocity + (Vector2)transform.up * chargeMod;
-    charging = false;
+    animator.SetBool("Charging", false);
+    animator.SetBool("FullyCharged", false);
+    animator.SetBool("HasBall", false);
   }
   
   protected override void Start() {
@@ -61,15 +69,22 @@ public class Player : Entity {
     mvmt += rb.position;
     Move(mvmt);
     Rotate(mousePos - rb.position);
-    if (Input.GetButton("Throw") && !charging) {
-      charging = true;
+    if (Input.GetButton("Throw") && !animator.GetBool("Charging") && animator.GetBool("HasBall")) {
+      animator.SetBool("Charging", true);
       heldTime = 0f;
       StartCoroutine(ChargeThrow());
     }
     rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed * 1.5f);
   }
   
-  private void OnCollisionEnter2D() {
-    // if ball, 
+  private void OnCollisionEnter2D(Collision2D collision) {
+    // die i guess
+  }
+  
+  private void OnTriggerStay2D(Collider2D collider) {
+    if (animator.GetCurrentAnimatorStateInfo(0).IsName("MissingBall")) {
+      ball.gameObject.SetActive(false);
+      animator.SetBool("HasBall", true);
+    }
   }
 }
