@@ -578,7 +578,10 @@ MonoBehaviour:
   speed: 10
   acc: 20
   rb: {fileID: 798561277}
-  scoreDelay: 0
+  maxCharge: 15
+  chargeTime: 1
+  chargeBonus: 5
+  scoreDelay: 1
   score: 0
   ball: {fileID: 1823447492}
 --- !u!58 &798561281

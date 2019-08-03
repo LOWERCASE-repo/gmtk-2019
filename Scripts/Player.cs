@@ -6,9 +6,18 @@ public class Player : Entity {
   private Vector2 mousePos;
   
   [SerializeField]
+  private float maxCharge;
+  [SerializeField]
+  private float chargeTime;
+  [SerializeField]
+  private float chargeBonus;
+  
+  [SerializeField]
   private float scoreDelay;
   
   [Header("Debug")]
+  [SerializeField]
+  private float heldTime;
   public int score;
   
   [Header("GameObjects")]
@@ -21,10 +30,23 @@ public class Player : Entity {
     StartCoroutine(GrowScore());
   }
   
-  private void Throw() {
-    if (transform.childCount == 1) {
-      transform.DetachChildren();
+  private bool charging; // TODO animator time
+  private IEnumerator ChargeThrow() {
+    while (Input.GetButton("Throw")) {
+      heldTime += Time.deltaTime;
+      yield return null;
     }
+    ball.transform.position = transform.position;
+    ball.transform.rotation = transform.rotation;
+    float chargeMod;
+    if (heldTime > chargeTime) {
+      // animator.SetTrigger("Flash");
+      chargeMod = maxCharge + chargeBonus;
+    } else {
+      chargeMod = maxCharge * heldTime / chargeTime;
+    }
+    ball.rb.velocity = rb.velocity + (Vector2)transform.up * chargeMod;
+    charging = false;
   }
   
   protected override void Start() {
@@ -39,12 +61,11 @@ public class Player : Entity {
     mvmt += rb.position;
     Move(mvmt);
     Rotate(mousePos - rb.position);
-    if (Input.GetButton("Throw")) {
-      // Instantiate(ball, transform.position, transform.rotation);
-      ball.transform.position = transform.position;
-      ball.transform.rotation = transform.rotation;
-      ball.rb.velocity = rb.velocity + (Vector2)transform.up * 5f;
-    } // TODO CHarged throws
+    if (Input.GetButton("Throw") && !charging) {
+      charging = true;
+      heldTime = 0f;
+      StartCoroutine(ChargeThrow());
+    }
     rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed * 1.5f);
   }
   

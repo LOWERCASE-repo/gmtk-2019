@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
   
-  private enum State { Default, Spinning, Gravitational };
+  private enum State { Plain, Moving, Spinning };
   private State[] states;
   
   [SerializeField]

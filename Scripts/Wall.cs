@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour {
   
-  private enum State { Plain, Bouncy, Hot, Spikes };
+  private enum State { Plain, Bouncy, Healing, Hot, Spiky };
   private State state;
   
   [SerializeField]
