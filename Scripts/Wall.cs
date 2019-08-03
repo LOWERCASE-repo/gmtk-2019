@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
   
-  private enum State {  Hot, Golden, Spiky };
+  private enum State {  Hot, Spiky };
   private State state;
   
   [SerializeField]
