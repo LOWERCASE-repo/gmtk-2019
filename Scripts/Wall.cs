@@ -16,10 +16,15 @@ public class Wall : MonoBehaviour {
   [Header("GameObjects")]
   [SerializeField]
   private Player player;
+  [SerializeField]
+  private Ball ball;
   
   private void SwitchState() {
     if (Random.value < switchChance) {
       animator.SetBool("Flaming", !animator.GetBool("Flaming"));
+      if (animator.GetBool("Flaming")) {
+        gameObject.tag = "Hazard";
+      }
       switchChance = 0f;
     }
   }
@@ -40,6 +45,12 @@ public class Wall : MonoBehaviour {
       switchChance += switchBonus;
       prevScore = player.score;
       SwitchState();
+    }
+  }
+  
+  private void OnCollisionEnter2D(Collision2D collision) {
+    if (animator.GetBool("Flaming") && collision.gameObject.name == "Ball") {
+      ball.Ignite();
     }
   }
 }

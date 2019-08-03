@@ -78,7 +78,9 @@ public class Player : Entity {
   }
   
   private void OnCollisionEnter2D(Collision2D collision) {
-    // die i guess
+    if (collision.gameObject.CompareTag("Hazard")) {
+      Debug.Log("player died");
+    }
   }
   
   private void OnTriggerStay2D(Collider2D collider) {
