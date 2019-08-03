@@ -9,7 +9,7 @@ public abstract class Entity : MonoBehaviour {
   
   [Header("Components")]
   [SerializeField]
-  protected Rigidbody2D rb;
+  public Rigidbody2D rb;
   
   [Header("GameObjects")]
   [SerializeField]
