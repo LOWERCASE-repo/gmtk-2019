@@ -10,10 +10,6 @@ public abstract class Entity : MonoBehaviour {
   [Header("Components")]
   [SerializeField]
   public Rigidbody2D rb;
-  
-  [Header("GameObjects")]
-  [SerializeField]
-  private MainCamera cam;
 
   protected void Move(Vector2 pos) {
     rb.AddForce((pos - rb.position).normalized * acc);

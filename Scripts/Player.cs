@@ -4,16 +4,16 @@ using System.Collections;
 public class Player : Entity {
   
   private Vector2 mousePos;
+  
+  [SerializeField]
   private float scoreDelay;
   
   [Header("Debug")]
   public int score;
   
   [Header("GameObjects")]
-  private Ball ball;
-  
   [SerializeField]
-  private GameObject tempBall;
+  private Ball ball;
   
   private IEnumerator GrowScore() {
     yield return new WaitForSecondsRealtime(scoreDelay);
@@ -40,9 +40,12 @@ public class Player : Entity {
     Move(mvmt);
     Rotate(mousePos - rb.position);
     if (Input.GetButton("Throw")) {
-      Instantiate(ball, transform.position, transform.rotation);
-    }
-    rb.velocity = rb.velocity.ClampMagnitude();
+      // Instantiate(ball, transform.position, transform.rotation);
+      ball.transform.position = transform.position;
+      ball.transform.rotation = transform.rotation;
+      ball.rb.velocity = rb.velocity + (Vector2)transform.up * 5f;
+    } // TODO CHarged throws
+    rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed * 1.5f);
   }
   
   private void OnCollisionEnter2D() {

@@ -578,8 +578,9 @@ MonoBehaviour:
   speed: 10
   acc: 20
   rb: {fileID: 798561277}
-  cam: {fileID: 0}
+  scoreDelay: 0
   score: 0
+  ball: {fileID: 1823447492}
 --- !u!58 &798561281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -910,6 +911,7 @@ GameObject:
   - component: {fileID: 1823447492}
   - component: {fileID: 1823447494}
   - component: {fileID: 1823447491}
+  - component: {fileID: 1823447495}
   m_Layer: 10
   m_Name: Ball
   m_TagString: Untagged
@@ -953,7 +955,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -977,10 +979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4903768f699c3c741ae427b90f293374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  acc: 0
+  speed: 10
+  acc: 10
   rb: {fileID: 1823447494}
-  cam: {fileID: 0}
 --- !u!4 &1823447493
 Transform:
   m_ObjectHideFlags: 0
@@ -989,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823447490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1009,13 +1010,29 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1823447495
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823447490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1001 &4832075503510268073
 PrefabInstance:
   m_ObjectHideFlags: 0

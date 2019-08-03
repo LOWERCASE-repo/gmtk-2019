@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour {
   
-  private enum State { Default, Hot, Bouncy, Portal };
+  private enum State { Plain, Bouncy, Hot, Spikes };
   private State state;
   
   [SerializeField]
@@ -13,14 +13,6 @@ public class Wall : MonoBehaviour {
   private PhysicsMaterial2D plain;
   [SerializeField]
   private PhysicsMaterial2D bouncy;
-  
-  [Header("GameObjects")]
-  [SerializeField]
-  private Wall opposite;
-  
-  private bool hot;
-  
-  
   
   private void OnCollisionEnter2D(Collision2D collision) {
   }
