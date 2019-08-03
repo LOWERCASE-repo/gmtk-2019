@@ -19,12 +19,7 @@ public class Room : MonoBehaviour {
     switch (phase) {
       case 0:
       if (player.score >= 100) {
-        if (Random.value < 0.5f) {
-          animator.SetBool("Moving", true);
-        } else {
-          animator.SetBool("Spinning", true);
-        }
-        phase++;
+        animator.SetBool("Moving", true);
       }
       break;
       

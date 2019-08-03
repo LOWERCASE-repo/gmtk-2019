@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
   
-  private enum State {  Hot, Spiky };
-  private State state;
-  
   [SerializeField]
   private float switchChance;
   
@@ -33,9 +30,9 @@ public class Wall : MonoBehaviour {
     if (player.score > prevScore) {
       float switchBonus = player.score - prevScore;
       if (animator.GetBool("Flaming")) {
-        switchBonus /= 200f;
+        switchBonus /=1f;
       } else {
-        switchBonus /= 800f;
+        switchBonus /= 1;
       }
       switchChance += switchBonus;
       prevScore = player.score;
