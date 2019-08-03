@@ -1,21 +1,8 @@
 using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 public class Room : MonoBehaviour {
   
-  private enum State { Moving, Spinning, Windy };
-  private HashSet<State> inactive;
-  private HashSet<State> active;
-  
-  [SerializeField]
-  private float speed;
-  [SerializeField]
-  private float speedButAgain;
-  
   [Header("GameObjects")]
-  [SerializeField]
-  private Wall[] walls;
   [SerializeField]
   private Player player;
   
@@ -23,37 +10,39 @@ public class Room : MonoBehaviour {
   [SerializeField]
   private Animator animator;
   
-  private void AddState() {
-    int choice = (int)(UnityEngine.Random.value * inactive.Count - Mathf.Epsilon);
-    int i = 0;
-    foreach (State state in inactive) {
-      if (i == choice) {
-        active.Add(state);
-        inactive.Remove(state);
-        break;
-      }
-      i++;
-    }
-    if (active.Contains(State.Spinning)) animator.SetBool("Spinning", true);
-    if (active.Contains(State.Moving)) animator.SetBool("Moving", true);
-  }
-  
   private void Start() {
-    var states = Enum.GetValues(typeof(State));
-    inactive = new HashSet<State>();
-    foreach (State state in states) {
-      inactive.Add(state);
-    }
-    active = new HashSet<State>();
+    phase = 0;
   }
   
-  private void FixedUpdate() {
-    transform.rotation = Quaternion.AngleAxis(speed * speedButAgain, Vector3.forward);
-  }
-  
+  private int phase;
   private void Update() {
-    if (player.score > (active.Count + 1) * 100) {
-      AddState();
+    switch (phase) {
+      case 0:
+      if (player.score >= 100) {
+        if (Random.value < 0.5f) {
+          animator.SetBool("Moving", true);
+        } else {
+          animator.SetBool("Spinning", true);
+        }
+        phase++;
+      }
+      break;
+      
+      case 1:
+      if (player.score >= 200) {
+        animator.SetBool("Moving", !animator.GetBool("Moving"));
+        animator.SetBool("Spinning", !animator.GetBool("Spinning"));
+        phase++;
+      }
+      break;
+      
+      case 2:
+      if (player.score >= 300) {
+        animator.SetBool("Moving", true);
+        animator.SetBool("Spinning", true);
+        phase++;
+      }
+      break;
     }
   }
 }

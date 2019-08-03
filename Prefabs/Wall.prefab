@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba18dcdd22a1b0d4e93e39cdd5892ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchChance: 0
   animator: {fileID: -3338366590624570719}
   player: {fileID: 0}
 --- !u!61 &4832075504503272967
@@ -87,7 +88,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 715d762a474ba97458f53e2f8506cd41, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
