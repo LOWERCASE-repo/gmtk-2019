@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba18dcdd22a1b0d4e93e39cdd5892ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  opposite: {fileID: 0}
+  minBounce: 2
+  mat: {fileID: 0}
 --- !u!120 &4832075504503272966
 LineRenderer:
   m_ObjectHideFlags: 0
