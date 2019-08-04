@@ -12,7 +12,7 @@ public class Room : MonoBehaviour {
   private Animator animator;
   
   private IEnumerator ChangePhases() {
-    yield return new WaitForSecondsRealtime(20f);
+    yield return new WaitForSecondsRealtime(10f);
     animator.SetBool("Moving", true);
     yield return new WaitForSecondsRealtime(17.5f);
     animator.SetBool("Moving", false);

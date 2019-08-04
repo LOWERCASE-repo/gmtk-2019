@@ -9,19 +9,36 @@ public class ScoreDisplay : MonoBehaviour {
   [SerializeField]
   private Text bigText;
   [SerializeField]
-  private GameObject scoreName;
+  private GameObject smallScoreName;
+  [SerializeField]
+  private GameObject bigScoreName;
+  [SerializeField]
+  private GameObject clickToRestart;
   
   [Header("GameObjects")]
   [SerializeField]
   private Player player;
   [SerializeField]
-  private SpriteRenderer filter;
-  
-  
+  private Animator filter;
+  private string score;
   
   private void Update() {
-    string score = "" + player.score;
-    smallText.text = score;
+    score = "" + player.score;
+    if (player.gameObject.activeSelf) {
+      smallText.text = score;
+      
+    } else {
+      EndGame();
+      // gameObject.SetActive(false);
+    }
+  }
+  
+  private void EndGame() {
+    filter.SetTrigger("Fade");
     bigText.text = score;
+    smallText.text = "";
+    smallScoreName.SetActive(false);
+    bigScoreName.SetActive(true);
+    clickToRestart.SetActive(true);
   }
 }

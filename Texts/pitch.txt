@@ -2,10 +2,10 @@
 
 
 
+bullet hell
 
 only one:
 - room
 - bullet
 - life
-- minute
-- button
+- control

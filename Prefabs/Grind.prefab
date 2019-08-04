@@ -4795,7 +4795,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1665562443
-  m_SortingLayer: 2
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_RenderMode: 1
   m_SortMode: 0
@@ -4880,7 +4880,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_ForceMagnitude: 60
+  m_ForceMagnitude: 70
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0

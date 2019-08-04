@@ -73,9 +73,11 @@ public class Player : Entity {
       animator.SetTrigger("Crushed");
       StartCoroutine(DelayDisable(1f));
     } else if (collision.gameObject.CompareTag("Hazard")) {
+      if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+        StartCoroutine(DelayDisable(1.49f));
+        StartCoroutine(DelaySpawn(0.5f));
+      }
       animator.SetTrigger("Burnt");
-      StartCoroutine(DelayDisable(1.49f));
-      StartCoroutine(DelaySpawn(0.5f));
     }
   }
   
