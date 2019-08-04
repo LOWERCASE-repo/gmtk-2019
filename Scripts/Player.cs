@@ -24,6 +24,12 @@ public class Player : Entity {
   [SerializeField]
   private GameObject death;
   
+  [SerializeField]
+  private Collider2D collider;
+  
+  [SerializeField]
+  private AudioSteve aud;
+  
   private IEnumerator GrowScore() {
     yield return new WaitForSecondsRealtime(scoreDelay);
     score++;
@@ -57,7 +63,7 @@ public class Player : Entity {
     score = 0;
     StartCoroutine(GrowScore());
     StartCoroutine(TrailSlime());
-    eyeCentroid = new Vector2(0.14f, 0.1f);
+    eyeCentroid = new Vector2(0.19f, 0.1f);
   }
   
   protected void FixedUpdate() {
@@ -70,18 +76,33 @@ public class Player : Entity {
   
   private void OnCollisionEnter2D(Collision2D collision) {
     if (collision.gameObject.name == "Spike") {
+      Destroy(collider);
       animator.SetTrigger("Crushed");
       StartCoroutine(DelayDisable(1f));
+      aud.PlaySound(4);
     } else if (collision.gameObject.CompareTag("Hazard")) {
+      Destroy(collider);
       if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
         StartCoroutine(DelayDisable(1.49f));
         StartCoroutine(DelaySpawn(0.5f));
       }
+      aud.PlaySound(3);
       animator.SetTrigger("Burnt");
     }
   }
   
   private void OnCollisionStay2D(Collision2D collision) {
-    OnCollisionEnter2D(collision);
+    if (collision.gameObject.name == "Spike") {
+      animator.SetTrigger("Crushed");
+      StartCoroutine(DelayDisable(1f));
+      // aud.PlaySound(4);
+    } else if (collision.gameObject.CompareTag("Hazard")) {
+      if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+        StartCoroutine(DelayDisable(1.49f));
+        StartCoroutine(DelaySpawn(0.5f));
+      }
+      // aud.PlaySound(3);
+      animator.SetTrigger("Burnt");
+    }
   }
 }

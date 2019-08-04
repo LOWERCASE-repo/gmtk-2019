@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 8537307296793101603, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: switchChance
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1951829491140411759, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
@@ -411,7 +411,7 @@ PrefabInstance:
     - target: {fileID: 8537307296793101603, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: switchChance
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1951829491140411759, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
@@ -568,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278082457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0.19, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 798561278}
@@ -982,6 +982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666251869}
+  - component: {fileID: 666251870}
   - component: {fileID: 666251868}
   m_Layer: 0
   m_Name: Audio
@@ -1000,11 +1001,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d0113f069215fc14fb9d9db9b9ec7819, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1100,6 +1101,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &666251870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666251867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa37785276e76a048ab1aba368633a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 80f471b29921a6e44bd391db75916c38, type: 3}
+  - {fileID: 8300000, guid: cdc8e582b79eb1e48ae4580f19929749, type: 3}
+  - {fileID: 8300000, guid: badb077c72b39674cb343ad7dc6eaada, type: 3}
+  - {fileID: 8300000, guid: 025c4e669304eef4e9b3d72c27fa5975, type: 3}
+  - {fileID: 8300000, guid: 07052910ceee6414da27668773ea38b7, type: 3}
+  audio: {fileID: 666251868}
 --- !u!1 &779312193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1341,8 @@ MonoBehaviour:
   room: {fileID: 779312194}
   trailRate: 0.1
   death: {fileID: 2472773499414436811, guid: c6b206b204658be4c920d45fed1e94e8, type: 3}
+  collider: {fileID: 798561281}
+  aud: {fileID: 666251870}
 --- !u!58 &798561281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1536,7 +1558,7 @@ PrefabInstance:
     - target: {fileID: 8537307296793101603, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: switchChance
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1951829491140411759, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
@@ -1789,6 +1811,7 @@ MonoBehaviour:
   acc: 5
   rb: {fileID: 1021696230}
   spark: {fileID: 1570020649550926724, guid: e1b888b1e5dce6440b776359c46d4f90, type: 3}
+  aud: {fileID: 666251870}
 --- !u!1 &1246858664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2374,7 @@ PrefabInstance:
     - target: {fileID: 8537307296793101603, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: switchChance
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1951829491140411759, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}

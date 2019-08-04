@@ -8,6 +8,9 @@ public class Spike : Entity {
   [SerializeField]
   private GameObject spark;
   
+  [SerializeField]
+  private AudioSteve aud;
+  
   protected override void Start() {
     base.Start();
   }
@@ -22,7 +25,12 @@ public class Spike : Entity {
   }
   
   private void OnCollisionEnter2D(Collision2D collision) {
-    OnCollisionStay2D(collision);
+    if (collision.gameObject.CompareTag("Hazard")) {
+      aud.PlaySound(2);
+      Instantiate(spark, collision.contacts[0].point, Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.up, rb.position - collision.contacts[0].point), Vector3.forward));
+    } else if (collision.gameObject.name != "Player") {
+      aud.PlaySound((int)(Random.value * 2f));
+    }
   }
   
   private void OnCollisionStay2D(Collision2D collision) {
