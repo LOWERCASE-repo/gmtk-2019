@@ -64,6 +64,8 @@ public class Player : Entity {
     StartCoroutine(GrowScore());
     StartCoroutine(TrailSlime());
     eyeCentroid = new Vector2(0.19f, 0.1f);
+    aud = GameObject.FindWithTag("Steve").GetComponent<AudioSteve>();
+    // oh shit
   }
   
   protected void FixedUpdate() {
@@ -76,12 +78,12 @@ public class Player : Entity {
   
   private void OnCollisionEnter2D(Collision2D collision) {
     if (collision.gameObject.name == "Spike") {
-      Destroy(collider);
+      gameObject.layer = LayerMask.NameToLayer("Hello");
       animator.SetTrigger("Crushed");
       StartCoroutine(DelayDisable(1f));
       aud.PlaySound(4);
     } else if (collision.gameObject.CompareTag("Hazard")) {
-      Destroy(collider);
+      gameObject.layer = LayerMask.NameToLayer("Hello");
       if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
         StartCoroutine(DelayDisable(1.49f));
         StartCoroutine(DelaySpawn(0.5f));

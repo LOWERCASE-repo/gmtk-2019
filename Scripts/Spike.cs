@@ -13,6 +13,7 @@ public class Spike : Entity {
   
   protected override void Start() {
     base.Start();
+    aud = GameObject.FindWithTag("Steve").GetComponent<AudioSteve>();
   }
   
   protected void FixedUpdate() {
