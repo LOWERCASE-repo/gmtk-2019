@@ -83,7 +83,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New State
+  m_Name: Crush
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -97,7 +97,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 7b659cebb238c8847bdde2f58e49652a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -302,10 +302,10 @@ AnimatorStateMachine:
     m_Position: {x: 110, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1183913896459191562}
-    m_Position: {x: 326.13843, y: 479.0524, z: 0}
+    m_Position: {x: 320, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6954072853005450753}
-    m_Position: {x: 425.12885, y: 293.13586, z: 0}
+    m_Position: {x: 420, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9001915160829211817}
     m_Position: {x: 170, y: 380, z: 0}

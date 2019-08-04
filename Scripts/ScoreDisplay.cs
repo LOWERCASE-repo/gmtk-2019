@@ -5,16 +5,23 @@ public class ScoreDisplay : MonoBehaviour {
   
   [Header("Components")]
   [SerializeField]
-  private Text text;
+  private Text smallText;
+  [SerializeField]
+  private Text bigText;
+  [SerializeField]
+  private GameObject scoreName;
   
   [Header("GameObjects")]
   [SerializeField]
   private Player player;
+  [SerializeField]
+  private SpriteRenderer filter;
+  
+  
   
   private void Update() {
-    // if (player.activeSelf) {
-    // 
-    // }
-    text.text = "" + player.score;
+    string score = "" + player.score;
+    smallText.text = score;
+    bigText.text = score;
   }
 }
