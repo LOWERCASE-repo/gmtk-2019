@@ -30,7 +30,9 @@ public class Player : Entity {
   
   private IEnumerator TrailSlime() {
     yield return new WaitForSecondsRealtime(trailRate);
-    Instantiate(puddle, transform.position, Quaternion.identity, room);
+    GameObject temp = Instantiate(puddle, transform.position, Quaternion.identity, room);
+    temp.transform.localScale *= 0.5f + Random.value;
+    temp.transform.localScale = (Vector2)temp.transform.localScale;
     StartCoroutine(TrailSlime());
   }
   
@@ -45,8 +47,6 @@ public class Player : Entity {
   protected void FixedUpdate() {
     mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     Move(mousePos);
-    // Rotate(mousePos - rb.position);
-    rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed * 1.5f);
     eyes.localPosition = eyeCentroid + Vector2.ClampMagnitude(mousePos - rb.position, 1f) * 0.3f;
   }
 }

@@ -16,7 +16,9 @@ public class Wall : MonoBehaviour {
   
   private void SwitchState() {
     if (Random.value < switchChance) {
-      animator.SetBool("Flaming", !animator.GetBool("Flaming"));
+      bool flaming = animator.GetBool("Flaming");
+      gameObject.tag = flaming ? "Untagged" : "Hazard";
+      animator.SetBool("Flaming", !flaming);
       switchChance = 0f;
     }
   }

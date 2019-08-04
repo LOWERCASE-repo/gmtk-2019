@@ -1,0 +1,4 @@
+- player deaths
+- debug walls
+- score saving
+- 
