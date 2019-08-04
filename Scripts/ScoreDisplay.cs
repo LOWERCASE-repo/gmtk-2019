@@ -12,6 +12,9 @@ public class ScoreDisplay : MonoBehaviour {
   private Player player;
   
   private void Update() {
+    // if (player.activeSelf) {
+    // 
+    // }
     text.text = "" + player.score;
   }
 }

@@ -127,16 +127,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779312194}
     m_Modifications:
-    - target: {fileID: -3338366590624570719, guid: c386fb1bec1eb664396daeba9b4e7667,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 715d762a474ba97458f53e2f8506cd41, type: 2}
     - target: {fileID: 4832075504503272965, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -3338366590624570719, guid: c386fb1bec1eb664396daeba9b4e7667,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 715d762a474ba97458f53e2f8506cd41, type: 2}
     - target: {fileID: 4832075504503272964, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -583,6 +583,8 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -598,6 +600,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015505fbbee67d94ab61fce308a91d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 798561276}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -674,6 +689,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985312b8109f80b4dbc864c1613ec8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &559513953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  acc: 30
+  acc: 60
   rb: {fileID: 798561277}
   scoreDelay: 0.5
   score: 0
@@ -1072,6 +1099,7 @@ MonoBehaviour:
   puddle: {fileID: 4841724502252997418, guid: cbd932f952a09e54099c99c3ff32e4ee, type: 3}
   room: {fileID: 779312194}
   trailRate: 0.1
+  death: {fileID: 2472773499414436811, guid: c6b206b204658be4c920d45fed1e94e8, type: 3}
 --- !u!58 &798561281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1592,16 +1620,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779312194}
     m_Modifications:
-    - target: {fileID: -3338366590624570719, guid: c386fb1bec1eb664396daeba9b4e7667,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 715d762a474ba97458f53e2f8506cd41, type: 2}
     - target: {fileID: 4832075504503272965, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: -3338366590624570719, guid: c386fb1bec1eb664396daeba9b4e7667,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 715d762a474ba97458f53e2f8506cd41, type: 2}
     - target: {fileID: 4832075504503272964, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1662,11 +1690,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 798561280}
-    - target: {fileID: 4832075504503272967, guid: c386fb1bec1eb664396daeba9b4e7667,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1951829491140411759, guid: c386fb1bec1eb664396daeba9b4e7667,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -1773,6 +1796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832075504503272967, guid: c386fb1bec1eb664396daeba9b4e7667,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c386fb1bec1eb664396daeba9b4e7667, type: 3}

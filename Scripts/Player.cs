@@ -21,6 +21,8 @@ public class Player : Entity {
   private Transform room;
   [SerializeField]
   private float trailRate;
+  [SerializeField]
+  private GameObject death;
   
   private IEnumerator GrowScore() {
     yield return new WaitForSecondsRealtime(scoreDelay);
@@ -36,8 +38,22 @@ public class Player : Entity {
     StartCoroutine(TrailSlime());
   }
   
+  private IEnumerator DelayDisable(float time) {
+    yield return new WaitForSecondsRealtime(time);
+    Time.timeScale = 0f;
+    Time.fixedDeltaTime = 200f;
+    gameObject.SetActive(false);
+  }
+  
+  private IEnumerator DelaySpawn(float time) {
+    yield return new WaitForSecondsRealtime(time);
+    Instantiate(death, transform.position, Quaternion.identity);
+  }
+  
   protected override void Start() {
     base.Start();
+    Time.timeScale = 1;
+    Time.fixedDeltaTime = 0.02f;
     score = 0;
     StartCoroutine(GrowScore());
     StartCoroutine(TrailSlime());
@@ -46,7 +62,24 @@ public class Player : Entity {
   
   protected void FixedUpdate() {
     mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    Move(mousePos);
+    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+      Move(mousePos);
+    }
     eyes.localPosition = eyeCentroid + Vector2.ClampMagnitude(mousePos - rb.position, 1f) * 0.3f;
+  }
+  
+  private void OnCollisionEnter2D(Collision2D collision) {
+    if (collision.gameObject.name == "Spike") {
+      animator.SetTrigger("Crushed");
+      StartCoroutine(DelayDisable(1f));
+    } else if (collision.gameObject.CompareTag("Hazard")) {
+      animator.SetTrigger("Burnt");
+      StartCoroutine(DelayDisable(1.49f));
+      StartCoroutine(DelaySpawn(0.5f));
+    }
+  }
+  
+  private void OnCollisionStay2D(Collision2D collision) {
+    OnCollisionEnter2D(collision);
   }
 }

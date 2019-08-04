@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Room : MonoBehaviour {
   
@@ -10,35 +11,18 @@ public class Room : MonoBehaviour {
   [SerializeField]
   private Animator animator;
   
-  private void Start() {
-    phase = 0;
+  private IEnumerator ChangePhases() {
+    yield return new WaitForSecondsRealtime(20f);
+    animator.SetBool("Moving", true);
+    yield return new WaitForSecondsRealtime(17.5f);
+    animator.SetBool("Moving", false);
+    yield return new WaitForSecondsRealtime(2.5f);
+    animator.SetBool("Spinning", true);
+    yield return new WaitForSecondsRealtime(20f);
+    animator.SetBool("Moving", true);
   }
   
-  private int phase;
-  private void Update() {
-    switch (phase) {
-      case 0:
-      if (player.score >= 20) {
-        animator.SetBool("Moving", true);
-        phase++;
-      }
-      break;
-      
-      case 1:
-      if (player.score >= 40) {
-        animator.SetBool("Moving", false);
-        animator.SetBool("Spinning", true);
-        phase++;
-      }
-      break;
-      
-      case 2:
-      if (player.score >= 60) {
-        animator.SetBool("Moving", true);
-        animator.SetBool("Spinning", true);
-        phase++;
-      }
-      break;
-    }
+  private void Start() {
+    StartCoroutine(ChangePhases());
   }
 }

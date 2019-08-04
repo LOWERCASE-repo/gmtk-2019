@@ -17,7 +17,6 @@ public class Wall : MonoBehaviour {
   private void SwitchState() {
     if (Random.value < switchChance) {
       bool flaming = animator.GetBool("Flaming");
-      gameObject.tag = flaming ? "Untagged" : "Hazard";
       animator.SetBool("Flaming", !flaming);
       switchChance = 0f;
     }
@@ -29,6 +28,11 @@ public class Wall : MonoBehaviour {
   
   private int prevScore;
   private void Update() {
+    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Flaming")) {
+      gameObject.tag = "Hazard";
+    } else {
+      gameObject.tag = "Untagged";
+    } // not sorry
     if (player.score > prevScore) {
       float switchBonus = player.score - prevScore;
       if (animator.GetBool("Flaming")) {

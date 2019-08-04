@@ -1,4 +1,11 @@
-- player deaths
-- debug walls
+
+- anim timing 20 sec switch
+
+- positive
+  - rhythm walls
+  - bounce walls
+  - near ball double
+  
+- sound
 - score saving
-- 
+- shrinking room
