@@ -30,9 +30,9 @@ public class Wall : MonoBehaviour {
     if (player.score > prevScore) {
       float switchBonus = player.score - prevScore;
       if (animator.GetBool("Flaming")) {
-        switchBonus /=1f;
+        switchBonus /= 100f;
       } else {
-        switchBonus /= 1;
+        switchBonus /= 500f;
       }
       switchChance += switchBonus;
       prevScore = player.score;

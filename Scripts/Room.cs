@@ -18,21 +18,22 @@ public class Room : MonoBehaviour {
   private void Update() {
     switch (phase) {
       case 0:
-      if (player.score >= 100) {
+      if (player.score >= 10) {
         animator.SetBool("Moving", true);
+        phase++;
       }
       break;
       
       case 1:
-      if (player.score >= 200) {
-        animator.SetBool("Moving", !animator.GetBool("Moving"));
-        animator.SetBool("Spinning", !animator.GetBool("Spinning"));
+      if (player.score >= 20) {
+        animator.SetBool("Moving", false);
+        animator.SetBool("Spinning", true);
         phase++;
       }
       break;
       
       case 2:
-      if (player.score >= 300) {
+      if (player.score >= 30) {
         animator.SetBool("Moving", true);
         animator.SetBool("Spinning", true);
         phase++;
