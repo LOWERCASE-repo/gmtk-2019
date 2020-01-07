@@ -14,7 +14,7 @@ public class Room : MonoBehaviour {
   private IEnumerator ChangePhases() {
     yield return new WaitForSecondsRealtime(5f);
     animator.SetBool("Moving", true);
-    yield return new WaitForSecondsRealtime(12.5f);
+    yield return new WaitForSecondsRealtime(7.5f);
     animator.SetBool("Moving", false);
     yield return new WaitForSecondsRealtime(2.5f);
     animator.SetBool("Spinning", true);
