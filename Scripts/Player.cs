@@ -97,7 +97,6 @@ public class Player : Entity {
     if (collision.gameObject.name == "Spike") {
       animator.SetTrigger("Crushed");
       StartCoroutine(DelayDisable(1f));
-      // aud.PlaySound(4);
     } else if (collision.gameObject.CompareTag("Hazard")) {
       if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
         StartCoroutine(DelayDisable(1.49f));
